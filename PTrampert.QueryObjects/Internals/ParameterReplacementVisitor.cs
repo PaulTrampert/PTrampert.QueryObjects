@@ -1,11 +1,21 @@
 using System.Linq.Expressions;
 
-namespace PTrampert.QueryObjects;
-
-internal class ParameterReplacementVisitor(ParameterExpression sourceParameter, ParameterExpression newParameter) : ExpressionVisitor
+namespace PTrampert.QueryObjects.Internals
 {
-    protected override Expression VisitParameter(ParameterExpression node)
+    internal class ParameterReplacementVisitor : ExpressionVisitor
     {
-        return node == sourceParameter ? newParameter : node;
+        private readonly ParameterExpression _sourceParameter;
+        private readonly ParameterExpression _newParameter;
+
+        public ParameterReplacementVisitor(ParameterExpression sourceParameter, ParameterExpression newParameter)
+        {
+            _sourceParameter = sourceParameter;
+            _newParameter = newParameter;
+        }
+
+        protected override Expression VisitParameter(ParameterExpression node)
+        {
+            return node == _sourceParameter ? _newParameter : node;
+        }
     }
 }
