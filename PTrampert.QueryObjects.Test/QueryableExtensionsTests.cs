@@ -1,6 +1,4 @@
-using NUnit.Framework;
-
-namespace PTrampert.QueryObjects;
+namespace PTrampert.QueryObjects.Test;
 
 public class QueryableExtensionsTests
 {

@@ -1,4 +1,4 @@
-namespace PTrampert.QueryObjects;
+namespace PTrampert.QueryObjects.Test;
 
 internal record TestTarget
 {
