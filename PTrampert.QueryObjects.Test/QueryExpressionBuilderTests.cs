@@ -1,44 +1,9 @@
-﻿using System.Linq.Expressions;
-using PTrampert.QueryObjects.Attributes;
-using PTrampert.QueryObjects.Internals;
+﻿using PTrampert.QueryObjects.Internals;
 
 namespace PTrampert.QueryObjects;
 
 public class QueryExpressionBuilderTests
 {
-    class TestTarget
-    {
-        public int AnotherProp { get; set; }
-        public int IntProperty { get; set; }
-        public string StringProperty { get; set; } = string.Empty;
-    }
-
-    class TestQuery
-    {
-        [EqualsQuery]
-        public int IntProperty { get; set; }
-        
-        [GreaterThanQuery(nameof(TestTarget.AnotherProp))]
-        public int AnotherPropLowerLimit { get; set; }
-        
-        [LessThanQuery(nameof(TestTarget.AnotherProp))]
-        public int AnotherPropUpperLimit { get; set; }
-        
-        [NotEqualsQuery]
-        public string StringProperty { get; set; } = "Derp";
-    }
-    
-    class TestAdvancedQuery : IQueryObject<TestTarget>
-    {
-        [EqualsQuery]
-        public int IntProperty { get; set; }
-        
-        public Expression<Func<TestTarget, bool>>? BuildQueryExpression()
-        {
-            return t => t.StringProperty.Contains("Derp");
-        }
-    }
-    
     [Test]
     public void BuildQueryExpression_WithSimpleQueryObject_ReturnsCorrectExpression()
     {
