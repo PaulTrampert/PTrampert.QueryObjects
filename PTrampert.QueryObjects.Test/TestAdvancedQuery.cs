@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using PTrampert.QueryObjects.Attributes;
 
-namespace PTrampert.QueryObjects;
+namespace PTrampert.QueryObjects.Test;
 
 internal record TestAdvancedQuery : IQueryObject<TestTarget>
 {

@@ -1,6 +1,6 @@
 ﻿using PTrampert.QueryObjects.Internals;
 
-namespace PTrampert.QueryObjects;
+namespace PTrampert.QueryObjects.Test;
 
 public class QueryExpressionBuilderTests
 {

@@ -7,7 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>PTrampert.QueryObjects</RootNamespace>
+        <RootNamespace>PTrampert.QueryObjects.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
