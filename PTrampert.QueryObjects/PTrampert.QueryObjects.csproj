@@ -6,4 +6,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="PTrampert.QueryObjects.Test"/>
+    </ItemGroup>
 </Project>
