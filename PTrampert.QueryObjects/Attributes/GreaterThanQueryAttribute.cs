@@ -14,6 +14,6 @@ namespace PTrampert.QueryObjects.Attributes
         }
 
         /// <inheritdoc />
-        protected override Func<Expression, Expression, Expression> ComparisonExpressionBuilder { get { return Expression.GreaterThan; } }
+        protected override Func<Expression, Expression, Expression> ComparisonExpressionBuilder => Expression.GreaterThan;
     }
 }

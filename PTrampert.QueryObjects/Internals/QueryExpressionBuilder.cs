@@ -38,8 +38,7 @@ namespace PTrampert.QueryObjects.Internals
                     clauses.Add(clause);
             }
 
-            var queryObjectWithCustomExpression = queryObject as IQueryObject<TTarget>;
-            if (queryObjectWithCustomExpression != null)
+            if (queryObject is IQueryObject<TTarget> queryObjectWithCustomExpression)
             {
                 var query = queryObjectWithCustomExpression.BuildQueryExpression();
                 if (query != null)
@@ -50,7 +49,7 @@ namespace PTrampert.QueryObjects.Internals
                 }
             }
 
-            Expression expression = clauses.Any()
+            var expression = clauses.Any()
                 ? clauses.Aggregate(Expression.AndAlso)
                 : Expression.Constant(true);
             while (expression.CanReduce)

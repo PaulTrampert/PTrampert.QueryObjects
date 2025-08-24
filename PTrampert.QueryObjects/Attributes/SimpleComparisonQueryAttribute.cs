@@ -12,7 +12,7 @@ namespace PTrampert.QueryObjects.Attributes
         /// <summary>
         /// The comparison expression builder to use.
         /// </summary>
-        protected virtual Func<Expression, Expression, Expression> ComparisonExpressionBuilder { get { return null; } }
+        protected virtual Func<Expression, Expression, Expression> ComparisonExpressionBuilder => null;
 
         /// <summary>
         /// Ignore this query if the property value is null.
