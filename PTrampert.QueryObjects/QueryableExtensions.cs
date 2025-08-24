@@ -21,4 +21,9 @@ public static class QueryableExtensions
         var expression = expressionBuilder.BuildQueryExpression(queryObject);
         return Queryable.Where(queryable, expression);
     }
+    
+    public static IEnumerable<T> Where<T>(this IEnumerable<T> enumerable, object queryObject)
+    {
+        return enumerable.AsQueryable().Where(queryObject);
+    }
 }

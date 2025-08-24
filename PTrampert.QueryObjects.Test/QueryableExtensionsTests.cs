@@ -13,7 +13,7 @@ public class QueryableExtensionsTests
             new TestTarget { IntProperty = 2, AnotherProp = 10, StringProperty = "B" },
             new TestTarget { IntProperty = 2, AnotherProp = 15, StringProperty = "Derp" },
             new TestTarget { IntProperty = 3, AnotherProp = 20, StringProperty = "C" }
-        }.AsQueryable();
+        };
 
         var query = new TestQuery
         {
@@ -39,7 +39,7 @@ public class QueryableExtensionsTests
             new TestTarget { IntProperty = 1, AnotherProp = 5, StringProperty = "A" },
             new TestTarget { IntProperty = 2, AnotherProp = 10, StringProperty = "Derp" },
             new TestTarget { IntProperty = 2, AnotherProp = 20, StringProperty = "DerpX" }
-        }.AsQueryable();
+        };
 
         var query = new TestAdvancedQuery { IntProperty = 2 };
 
