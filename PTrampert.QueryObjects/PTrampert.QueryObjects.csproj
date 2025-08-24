@@ -4,6 +4,20 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <!-- NuGet properties -->
+        <PackageId>PTrampert.QueryObjects</PackageId>
+        <Authors>Paul Trampert</Authors>
+        <Company>Paul Trampert</Company>
+        <Description>Attribute-based query objects for LINQ/IQueryable in .NET</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/ptrampert/PTrampert.QueryObjects</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageProjectUrl>https://github.com/ptrampert/PTrampert.QueryObjects</PackageProjectUrl>
+        <Copyright>Copyright © 2025 Paul Trampert</Copyright>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IncludeSource>true</IncludeSource>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
