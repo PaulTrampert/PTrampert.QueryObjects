@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
+using PTrampert.QueryObjects.Attributes;
 
-namespace PTrampert.QueryObjects.Attributes;
+namespace PTrampert.QueryObjects;
 
 /// <summary>
 /// Interface that defines a query object. Query objects are used to build expressions for filtering data.
