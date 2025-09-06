@@ -9,6 +9,11 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class StringContainsQueryAttribute : QueryAttribute
     {
+        public StringContainsQueryAttribute(string targetProperty = null)
+            : base(targetProperty)
+        {
+        }
+        
         /// <summary>
         /// Ignore the search term if not included.
         /// </summary>

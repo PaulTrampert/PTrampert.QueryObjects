@@ -2,7 +2,7 @@ using PTrampert.QueryObjects.Attributes;
 
 namespace PTrampert.QueryObjects.Test.Attributes;
 
-public class AnyOfAttributeTests
+public class AnyOfQueryAttributeTests
 {
     private record AnyOfTestTarget
     {
@@ -11,7 +11,7 @@ public class AnyOfAttributeTests
     
     private record AnyOfTestQuery
     {
-        [AnyOf(nameof(AnyOfTestTarget.Id))]
+        [AnyOfQuery(nameof(AnyOfTestTarget.Id))]
         public IEnumerable<Guid>? Ids { get; init; }
     }
     
