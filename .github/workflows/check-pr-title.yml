@@ -42,3 +42,7 @@ jobs:
           message: |
               ### ✅ PR Title Formatted Correctly
               The title of this PR has been updated to match the correct format. Thank you!
+              
+      - name: Fail if PR title is not correct
+        if: ${{ steps.check.outputs.success == 'false' }}
+        run: exit 1
