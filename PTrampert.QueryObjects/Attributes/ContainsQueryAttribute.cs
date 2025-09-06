@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using PTrampert.QueryObjects.Internals;
 
 namespace PTrampert.QueryObjects.Attributes
 {
@@ -27,13 +28,20 @@ namespace PTrampert.QueryObjects.Attributes
             if (targetParameter == null) throw new ArgumentNullException(nameof(targetParameter));
             if (targetProperty == null) throw new ArgumentNullException(nameof(targetProperty));
 
-            var queryValue = queryProperty.GetValue(queryObject) as IEnumerable;
+            var queryValue = queryProperty.GetValue(queryObject);
             if (IgnoreIfNull && queryValue == null)
                 return null;
+
+            if (!typeof(IEnumerable).IsAssignableFrom(targetProperty.PropertyType))
+            {
+                throw new InvalidOperationException($"The target property '{targetProperty.Name}' is not a collection type.");
+            }
+
+            var elementType = targetProperty.PropertyType.GetCollectionElementType();
             var constant = Expression.Constant(queryValue);
             var containsMethod = typeof(Enumerable).GetMethods(BindingFlags.Static | BindingFlags.Public)
                 .First(m => m.Name == nameof(Enumerable.Contains) && m.GetParameters().Length == 2)
-                .MakeGenericMethod(queryProperty.PropertyType);
+                .MakeGenericMethod(elementType);
             return Expression.Call(containsMethod, Expression.Property(targetParameter, targetProperty), constant);
         }
     }
