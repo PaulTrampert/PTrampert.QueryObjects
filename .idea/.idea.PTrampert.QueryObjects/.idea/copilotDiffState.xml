@@ -43,14 +43,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/PTrampert.QueryObjects.Test/Attributes/StringContainsQueryAttributeTests.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/PTrampert.QueryObjects.Test/Attributes/StringContainsQueryAttributeTests.cs" />
-              <option name="updatedContent" value="using PTrampert.QueryObjects.Attributes;&#10;&#10;namespace PTrampert.QueryObjects.Test.Attributes;&#10;&#10;public class StringContainsQueryAttributeTests&#10;{&#10;    private record TestTarget&#10;    {&#10;        public string? Name { get; init; }&#10;    }&#10;&#10;    private record TestQuery&#10;    {&#10;        [StringContainsQuery(nameof(TestTarget.Name))]&#10;        public string? Name { get; init; }&#10;    }&#10;&#10;    [Test]&#10;    public void StringContainsQueryAttribute_SelectsRecordsContainingSubstring()&#10;    {&#10;        var data = new List&lt;TestTarget&gt;&#10;        {&#10;            new() { Name = &quot;apple&quot; },&#10;            new() { Name = &quot;banana&quot; },&#10;            new() { Name = &quot;pineapple&quot; },&#10;            new() { Name = &quot;grape&quot; }&#10;        };&#10;        var query = new TestQuery { Name = &quot;apple&quot; };&#10;        var result = data.Where(query);&#10;        Assert.That(result, Is.EqualTo([data[0], data[2]]));&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
       </map>
     </option>
   </component>
