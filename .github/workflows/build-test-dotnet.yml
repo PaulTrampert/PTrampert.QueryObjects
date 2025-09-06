@@ -3,6 +3,9 @@
 
 name: Build and Test .NET Library
 
+permissions:
+  contents: write
+
 env:
   VERSION_FORMAT: ${{'${major}.${minor}.${patch}'}}
 
