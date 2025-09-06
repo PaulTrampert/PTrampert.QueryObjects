@@ -5,6 +5,10 @@ using System.Reflection;
 
 namespace PTrampert.QueryObjects.Attributes
 {
+    /// <summary>
+    /// Checks if the target property is contained in the query property's collection.
+    /// May only be used on query properties that implement <see cref="IEnumerable"/>
+    /// </summary>
     public class AnyOfAttribute : QueryAttribute
     {
         public AnyOfAttribute(string targetProperty = null)
@@ -12,6 +16,7 @@ namespace PTrampert.QueryObjects.Attributes
         {
         }
         
+        /// <inheritdoc />
         public override Expression BuildExpression(
             object queryObject, 
             PropertyInfo queryProperty, 
