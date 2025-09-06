@@ -5,7 +5,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      
   - package-ecosystem: "nuget" # See documentation for possible values
     directories:
       - / # Location of package manifests
