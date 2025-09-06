@@ -32,8 +32,8 @@ jobs:
       with:
         tag_name: v${{needs.version.outputs.version}}
         files: |
-          package/*.nupkg
-          package/*.snupkg
+          **/*.nupkg
+          **/*.snupkg
         fail_on_unmatched_files: true
         target_commitish: ${{github.sha}}
         generate_release_notes: true
