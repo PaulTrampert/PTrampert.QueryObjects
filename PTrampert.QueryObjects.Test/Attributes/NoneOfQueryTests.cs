@@ -9,9 +9,20 @@ public class NoneOfQueryTests
         public Guid Id { get; init; }
     }
     
+    private record NoneOfTestTargetWithEnumerable
+    {
+        public IEnumerable<Guid> Ids { get; init; } = null!;
+    }
+    
     private record NoneOfTestQuery
     {
         [NoneOfQuery(nameof(NoneOfTestTarget.Id))]
+        public IEnumerable<Guid>? Ids { get; init; }
+    }
+    
+    private record NoneOfTestQueryWithEnumerable
+    {
+        [NoneOfQuery]
         public IEnumerable<Guid>? Ids { get; init; }
     }
 
@@ -38,6 +49,32 @@ public class NoneOfQueryTests
         // Act
         var result = data.Where(queryObject);
         
+        Assert.That(result, Is.EqualTo([data[1]]));
+    }
+    
+    [Test]
+    public void AnyOfAttribute_SelectsRecordsWithAnyOfTheSpecifiedValues_InEnumerableProperty()
+    {
+        var id1 = Guid.NewGuid();
+        var id2 = Guid.NewGuid();
+        var id3 = Guid.NewGuid();
+        var id4 = Guid.NewGuid();
+        var id5 = Guid.NewGuid();
+        var id6 = Guid.NewGuid();
+        
+        var data = new List<NoneOfTestTargetWithEnumerable>
+        {
+            new() { Ids = [id1, id2] },
+            new() { Ids = [id3, id4] },
+            new() { Ids = [id5, id6] }
+        };
+        var queryObject = new NoneOfTestQueryWithEnumerable
+        {
+            Ids = [id2, id5]
+        };
+        
+        var result = data.Where(queryObject);
+
         Assert.That(result, Is.EqualTo([data[1]]));
     }
 }
