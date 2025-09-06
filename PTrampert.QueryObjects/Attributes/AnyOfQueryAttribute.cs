@@ -9,9 +9,9 @@ namespace PTrampert.QueryObjects.Attributes
     /// Checks if the target property is contained in the query property's collection.
     /// May only be used on query properties that implement <see cref="IEnumerable"/>
     /// </summary>
-    public class AnyOfAttribute : QueryAttribute
+    public class AnyOfQueryAttribute : QueryAttribute
     {
-        public AnyOfAttribute(string targetProperty = null)
+        public AnyOfQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {
         }
