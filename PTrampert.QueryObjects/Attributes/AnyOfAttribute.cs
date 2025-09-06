@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -18,13 +19,12 @@ namespace PTrampert.QueryObjects.Attributes
             PropertyInfo targetProperty
         )
         {
-            var queryValue = queryProperty.GetValue(queryObject) as System.Collections.IEnumerable;
-            if (queryValue == null)
+            if (!(queryProperty.GetValue(queryObject) is IEnumerable queryValue))
                 return null;
 
             var elementType = targetProperty.PropertyType;
             var containsMethod = typeof(Enumerable).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                .First(m => m.Name == nameof(Enumerable.Contains) && m.GetParameters().Length == 2)
+                .Single(m => m.Name == nameof(Enumerable.Contains) && m.GetParameters().Length == 2)
                 .MakeGenericMethod(elementType);
 
             var constant = Expression.Constant(queryValue);
