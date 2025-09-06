@@ -21,7 +21,7 @@ jobs:
       
       - name: Add comment to fix PR title
         uses: marocchino/sticky-pull-request-comment@v2
-        if: ${{ steps.check.outputs.success == 'false'}}
+        if: ${{ steps.check.outputs.success == 'false' }}
         with:
           header: 'PR Title Check'
           recreate: true
@@ -34,7 +34,7 @@ jobs:
               * `(PATCH) Fix bug`
 
       - name: Add comment that PR title is fixed
-        if: ${{ steps.check.outputs.success == 'true'}}
+        if: ${{ steps.check.outputs.success == 'true' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: 'PR Title Check'
