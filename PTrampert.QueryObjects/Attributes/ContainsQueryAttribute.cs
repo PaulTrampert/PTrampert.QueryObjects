@@ -39,9 +39,7 @@ namespace PTrampert.QueryObjects.Attributes
 
             var elementType = targetProperty.PropertyType.GetCollectionElementType();
             var constant = Expression.Constant(queryValue);
-            var containsMethod = typeof(Enumerable).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                .First(m => m.Name == nameof(Enumerable.Contains) && m.GetParameters().Length == 2)
-                .MakeGenericMethod(elementType);
+            var containsMethod = elementType.GetContainsMethod();
             return Expression.Call(containsMethod, Expression.Property(targetParameter, targetProperty), constant);
         }
     }

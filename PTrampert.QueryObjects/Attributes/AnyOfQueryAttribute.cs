@@ -38,9 +38,7 @@ namespace PTrampert.QueryObjects.Attributes
                 targetElementType = targetElementType.GetCollectionElementType();
                 return BuildCollectionExpression(queryValue, targetParameter, targetProperty, targetElementType);
             }
-            var containsMethod = typeof(Enumerable).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                .Single(m => m.Name == nameof(Enumerable.Contains) && m.GetParameters().Length == 2)
-                .MakeGenericMethod(targetElementType);
+            var containsMethod = targetElementType.GetContainsMethod();
 
             var constant = Expression.Constant(queryValue);
             var propertyAccess = Expression.Property(targetParameter, targetProperty);
@@ -54,14 +52,8 @@ namespace PTrampert.QueryObjects.Attributes
             Type targetElementType
         )
         {
-            var intersectMethod = typeof(Enumerable)
-                .GetMethods(BindingFlags.Static | BindingFlags.Public)
-                .Single(m => m.Name == nameof(Enumerable.Intersect) && m.GetParameters().Length == 2)
-                .MakeGenericMethod(targetElementType);
-            var anyMethod = typeof(Enumerable)
-                .GetMethods(BindingFlags.Static | BindingFlags.Public)
-                .Single(m => m.Name == nameof(Enumerable.Any) && m.GetParameters().Length == 1)
-                .MakeGenericMethod(targetElementType);
+            var intersectMethod = targetElementType.GetIntersectMethod();
+            var anyMethod = targetElementType.GetAnyMethod();
             var constant = Expression.Constant(queryValue);
             var propertyAccess = Expression.Property(targetParameter, targetProperty);
             var intersectCall = Expression.Call(intersectMethod, propertyAccess, constant);
