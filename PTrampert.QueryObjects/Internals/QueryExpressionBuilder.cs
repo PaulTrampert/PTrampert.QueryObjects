@@ -48,7 +48,7 @@ namespace PTrampert.QueryObjects.Internals
                 }
             }
 
-            var clausesArray = clauses as Expression[] ?? clauses.ToArray();
+            var clausesArray = clauses.ToArray();
             var expression = clausesArray.Any()
                 ? clausesArray.Aggregate(Expression.AndAlso)
                 : Expression.Constant(true);
