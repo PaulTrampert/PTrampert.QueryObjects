@@ -46,7 +46,7 @@ namespace PTrampert.QueryObjects.Internals
                 {
                     var visitor = new ParameterReplacementVisitor(query.Parameters[0], _parameter);
                     query = visitor.Visit(query) as Expression<Func<TTarget, bool>>;
-                    clauses = clauses.Append(query.Body);
+                    clauses.Add(query.Body);
                 }
             }
 
