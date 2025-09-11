@@ -20,7 +20,7 @@ namespace PTrampert.QueryObjects.Internals
                 }
 
                 if (!typeof(IEnumerable).IsAssignableFrom(cType))
-                    throw new ArgumentException($"The collection type '{cType.Name}' is not an array type.");
+                    throw new ArgumentException($"The collection type '{cType.Name}' must be enumerable.");
                 
                 return cType.IsGenericType ? cType.GetGenericArguments()[0] : typeof(object);
             });
