@@ -16,7 +16,7 @@ namespace PTrampert.QueryObjects.Internals
             {
                 if (cType.IsArray)
                 {
-                    return collectionType.GetElementType();
+                    return cType.GetElementType();
                 }
 
                 if (!typeof(IEnumerable).IsAssignableFrom(cType))
