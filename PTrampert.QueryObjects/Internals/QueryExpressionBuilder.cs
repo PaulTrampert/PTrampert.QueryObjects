@@ -29,10 +29,11 @@ namespace PTrampert.QueryObjects.Internals
         /// <param name="queryObject">The query object to build the expression from.</param>
         /// <returns>The resulting query expression.</returns>
         /// <exception cref="ArgumentNullException">Thrown if queryObject is null.</exception>
-        public Expression<Func<TTarget, bool>> BuildQueryExpression<TQuery>(TQuery queryObject)
+        public Expression<Func<TTarget, bool>> BuildQueryExpression(object queryObject)
         {
             if (queryObject == null) throw new ArgumentNullException(nameof(queryObject));
-            var propertyMappings = GetPropertyMappings<TQuery>();
+            var queryType = queryObject.GetType();
+            var propertyMappings = GetPropertyMappings(queryType);
             var clauses = propertyMappings
                 .Select(m => m.QueryAttribute.BuildExpression(queryObject, m.QueryProperty, _parameter, m.TargetProperty))
                 .Where(c => c != null);
@@ -59,12 +60,12 @@ namespace PTrampert.QueryObjects.Internals
             return Expression.Lambda<Func<TTarget, bool>>(expression, _parameter);
         }
         
-        private IEnumerable<QueryPropertyMapping> GetPropertyMappings<TQuery>()
+        private IEnumerable<QueryPropertyMapping> GetPropertyMappings(Type queryType)
         {
-            return _propertyMappings.GetOrAdd(typeof(TQuery), _ =>
+            return _propertyMappings.GetOrAdd(queryType, qType =>
             {
                 var mappings = new List<QueryPropertyMapping>();
-                var queryProperties = typeof(TQuery).GetProperties();
+                var queryProperties = qType.GetProperties();
                 foreach (var queryProperty in queryProperties)
                 {
                     var attribute = queryProperty.GetCustomAttribute<QueryAttribute>();
