@@ -50,9 +50,8 @@ namespace PTrampert.QueryObjects.Internals
                 }
             }
 
-            var clausesArray = clauses.ToArray();
-            var expression = clausesArray.Any()
-                ? clausesArray.Aggregate(Expression.AndAlso)
+            var expression = clauses.Any()
+                ? clauses.Aggregate(Expression.AndAlso)
                 : Expression.Constant(true);
             while (expression.CanReduce)
             {
