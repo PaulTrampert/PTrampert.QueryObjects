@@ -29,3 +29,4 @@ public class LessThanQueryAttributeTests
         Assert.That(result, Is.EqualTo([data[0], data[1]]));
     }
 }
+
