@@ -36,7 +36,8 @@ namespace PTrampert.QueryObjects.Internals
             var propertyMappings = GetPropertyMappings(queryType);
             var clauses = propertyMappings
                 .Select(m => m.QueryAttribute.BuildExpression(queryObject, m.QueryProperty, _parameter, m.TargetProperty))
-                .Where(c => c != null);
+                .Where(c => c != null)
+                .ToList();
 
             if (queryObject is IQueryObject<TTarget> queryObjectWithCustomExpression)
             {
