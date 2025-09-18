@@ -11,13 +11,13 @@ public class StringStartsWithQueryAttributeTests
 
     private record TestQuery
     {
-        [StringStartsWithQuery(nameof(TestTarget.Name))]
+        [StringStartsWithQuery(nameof(TestTarget.Name), IgnoreIfNull = false)]
         public string? Name { get; init; }
     }
     
     private record TestQueryIgnorNull
     {
-        [StringStartsWithQuery(nameof(TestTarget.Name), IgnoreIfNull = true)]
+        [StringStartsWithQuery(nameof(TestTarget.Name))]
         public string? Name { get; init; }
     }
 

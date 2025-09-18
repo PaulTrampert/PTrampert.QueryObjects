@@ -11,13 +11,13 @@ public class StringContainsQueryAttributeTests
 
     private record TestQuery
     {
-        [StringContainsQuery(nameof(TestTarget.Name))]
+        [StringContainsQuery(nameof(TestTarget.Name), IgnoreIfNull = false)]
         public string? Name { get; init; }
     }
 
     private record IgnoreIfNullTestQuery
     {
-        [StringContainsQuery(nameof(TestTarget.Name), IgnoreIfNull = true)]
+        [StringContainsQuery(nameof(TestTarget.Name))]
         public string? Name { get; init; }
     }
 

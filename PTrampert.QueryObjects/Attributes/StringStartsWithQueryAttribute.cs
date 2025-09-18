@@ -17,7 +17,7 @@ public class StringStartsWithQueryAttribute : QueryAttribute
     /// <summary>
     /// Ignore the search term if it is null.
     /// </summary>
-    public bool IgnoreIfNull { get; set; }
+    public bool IgnoreIfNull { get; set; } = true;
     public override Expression BuildExpression(
         object queryObject, 
         PropertyInfo queryProperty, 

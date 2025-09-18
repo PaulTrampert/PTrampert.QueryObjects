@@ -13,11 +13,11 @@ namespace PTrampert.QueryObjects.Attributes
             : base(targetProperty)
         {
         }
-        
+
         /// <summary>
         /// Ignore the search term if not included.
         /// </summary>
-        public bool IgnoreIfNull { get; set; }
+        public bool IgnoreIfNull { get; set; } = true;
 
         /// <inheritdoc />
         public override Expression BuildExpression(object queryObject, PropertyInfo queryProperty, ParameterExpression targetParameter,
