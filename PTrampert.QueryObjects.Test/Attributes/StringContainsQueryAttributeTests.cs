@@ -15,6 +15,12 @@ public class StringContainsQueryAttributeTests
         public string? Name { get; init; }
     }
 
+    private record IgnoreIfNullTestQuery
+    {
+        [StringContainsQuery(nameof(TestTarget.Name), IgnoreIfNull = true)]
+        public string? Name { get; init; }
+    }
+
     [Test]
     public void StringContainsQueryAttribute_SelectsRecordsContainingSubstring()
     {
@@ -29,5 +35,49 @@ public class StringContainsQueryAttributeTests
         var result = data.Where(query);
         Assert.That(result, Is.EqualTo([data[0], data[2]]));
     }
-}
 
+    [Test]
+    public void StringContainsQueryAttribute_IgnoreIfNull_True_DoesNotFilterIfNull()
+    {
+        var data = new List<TestTarget>
+        {
+            new() { Name = "apple" },
+            new() { Name = "banana" },
+            new() { Name = "pineapple" },
+            new() { Name = "grape" }
+        };
+        var query = new IgnoreIfNullTestQuery { Name = null };
+        var result = data.Where(query);
+        Assert.That(result, Is.EqualTo(data));
+    }
+
+    [Test]
+    public void StringContainsQueryAttribute_IgnoreIfNull_True_FiltersIfNotNull()
+    {
+        var data = new List<TestTarget>
+        {
+            new() { Name = "apple" },
+            new() { Name = "banana" },
+            new() { Name = "pineapple" },
+            new() { Name = "grape" }
+        };
+        var query = new IgnoreIfNullTestQuery { Name = "app" };
+        var result = data.Where(query);
+        Assert.That(result, Is.EqualTo([data[0], data[2]]));
+    }
+
+    [Test]
+    public void StringContainsQueryAttribute_IgnoreIfNull_False_FiltersAllIfNull()
+    {
+        var data = new List<TestTarget>
+        {
+            new() { Name = "apple" },
+            new() { Name = "banana" },
+            new() { Name = "pineapple" },
+            new() { Name = "grape" }
+        };
+        var query = new TestQuery { Name = null };
+        var result = data.Where(query);
+        Assert.That(result, Is.Empty);
+    }
+}

@@ -29,8 +29,8 @@ namespace PTrampert.QueryObjects.Attributes
             if (targetProperty == null) throw new ArgumentNullException(nameof(targetProperty));
 
             var queryValue = queryProperty.GetValue(queryObject);
-            if (IgnoreIfNull && queryValue == null)
-                return null;
+            if (queryValue == null)
+                return IgnoreIfNull ? null : Expression.Constant(false);
             var constant = Expression.Constant(queryValue);
             var containsMethod = typeof(string).GetMethod(nameof(string.Contains), new[] {typeof(string)});
             return Expression.Call(Expression.Property(targetParameter, targetProperty), containsMethod, constant);
