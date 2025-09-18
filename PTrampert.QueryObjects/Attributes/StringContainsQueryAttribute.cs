@@ -32,7 +32,7 @@ namespace PTrampert.QueryObjects.Attributes
             if (queryValue == null)
                 return IgnoreIfNull ? null : Expression.Constant(false);
             var constant = Expression.Constant(queryValue);
-            var containsMethod = typeof(string).GetMethod(nameof(string.Contains), new[] {typeof(string)});
+            var containsMethod = typeof(string).GetMethod(nameof(string.Contains), new[] {typeof(string)})!;
             return Expression.Call(Expression.Property(targetParameter, targetProperty), containsMethod, constant);
         }
     }
