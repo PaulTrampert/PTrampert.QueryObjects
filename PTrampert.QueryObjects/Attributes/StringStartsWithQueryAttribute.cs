@@ -31,8 +31,8 @@ public class StringStartsWithQueryAttribute : QueryAttribute
         if (targetProperty == null) throw new ArgumentNullException(nameof(targetProperty));
         
         var queryValue = queryProperty.GetValue(queryObject);
-        if (queryValue == null && IgnoreIfNull)
-            return null;
+        if (queryValue == null)
+            return IgnoreIfNull ? null : Expression.Constant(false);
         
         var constant = Expression.Constant(queryValue);
         var startsWithMethod = typeof(string).GetMethod(nameof(string.StartsWith), [typeof(string)])!;

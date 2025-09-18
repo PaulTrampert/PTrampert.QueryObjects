@@ -14,6 +14,12 @@ public class StringStartsWithQueryAttributeTests
         [StringStartsWithQuery(nameof(TestTarget.Name))]
         public string? Name { get; init; }
     }
+    
+    private record TestQueryIgnorNull
+    {
+        [StringStartsWithQuery(nameof(TestTarget.Name), IgnoreIfNull = true)]
+        public string? Name { get; init; }
+    }
 
     [Test]
     public void StringStartsWithQueryAttribute_SelectsRecordsStartingWithSubstring()
@@ -30,5 +36,33 @@ public class StringStartsWithQueryAttributeTests
         var query = new TestQuery { Name = "app" };
         var result = data.Where(query);
         Assert.That(result, Is.EqualTo([data[0], data[3]]));
+    }
+    
+    [Test]
+    public void StringStartsWithQueryAttribute_WhenIgnoreIfNullTrue_NullQueryValue_ReturnsAllRecords()
+    {
+        var data = new List<TestTarget>
+        {
+            new() { Name = "apple" },
+            new() { Name = "banana" },
+            new() { Name = "grape" }
+        };
+        var query = new TestQueryIgnorNull { Name = null };
+        var result = data.Where(query);
+        Assert.That(result, Is.EqualTo(data));
+    }
+    
+    [Test]
+    public void StringStartsWithQueryAttribute_WhenIgnoreIfNullFalse_NullQueryValue_ReturnsNoRecords()
+    {
+        var data = new List<TestTarget>
+        {
+            new() { Name = "apple" },
+            new() { Name = "banana" },
+            new() { Name = "grape" }
+        };
+        var query = new TestQuery { Name = null };
+        var result = data.Where(query);
+        Assert.That(result, Is.Empty);
     }
 }
