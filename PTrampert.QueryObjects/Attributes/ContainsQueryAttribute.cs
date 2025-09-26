@@ -10,6 +10,8 @@ namespace PTrampert.QueryObjects.Attributes
     /// <summary>
     /// Checks if the query property is contained within the target property.
     /// For example, <code>targetQueryable.Where(q =&gt; q.TargetProperty.Contains(queryObject.QueryProperty))</code>
+    ///
+    /// Use <see cref="StringContainsQueryAttribute"/> for <see cref="string.Contains"/>.
     /// </summary>
     public class ContainsQueryAttribute : QueryAttribute
     {

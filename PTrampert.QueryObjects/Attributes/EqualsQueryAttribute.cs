@@ -5,6 +5,8 @@ namespace PTrampert.QueryObjects.Attributes
 {
     /// <summary>
     /// Checks the target property for equality with the query property.
+    ///
+    /// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty == queryObject.QueryProperty)</code>
     /// </summary>
     public class EqualsQueryAttribute : SimpleComparisonQueryAttribute
     {
