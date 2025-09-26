@@ -7,7 +7,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// <summary>
     /// Perform a Contains query on the applied property.
     ///
-    /// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty.StartsWith(queryObject.QueryProperty))</code>
+    /// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty.Contains(queryObject.QueryProperty))</code>
     /// </summary>
     public class StringContainsQueryAttribute : QueryAttribute
     {
