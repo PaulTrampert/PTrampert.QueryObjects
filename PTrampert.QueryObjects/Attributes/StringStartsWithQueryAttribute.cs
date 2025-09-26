@@ -6,6 +6,8 @@ namespace PTrampert.QueryObjects.Attributes;
 
 /// <summary>
 /// Checks if the target string property starts with the query string property.
+///
+/// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty.StartsWith(queryObject.QueryProperty))</code>
 /// </summary>
 public class StringStartsWithQueryAttribute : QueryAttribute
 {

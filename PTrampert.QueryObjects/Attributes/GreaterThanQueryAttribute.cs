@@ -5,6 +5,8 @@ namespace PTrampert.QueryObjects.Attributes
 {
     /// <summary>
     /// Checks if the target property is greater than the query property.
+    ///
+    /// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty &gt; queryObject.QueryProperty)</code>
     /// </summary>
     public class GreaterThanQueryAttribute : SimpleComparisonQueryAttribute
     {

@@ -5,6 +5,8 @@ namespace PTrampert.QueryObjects.Attributes
 {
     /// <summary>
     /// Checks if the target property does not equal the query property.
+    ///
+    /// Equivalent linq expression: <code>queryable.Where(x => x.TargetProperty != queryObject.QueryProperty)</code>
     /// </summary>
     public class NotEqualsQueryAttribute : SimpleComparisonQueryAttribute
     {
