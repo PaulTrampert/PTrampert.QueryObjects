@@ -50,6 +50,8 @@ var filtered = people.Where(query).ToList();
 // filtered contains Alice and Caroline
 ```
 
+Full documentation can be found [here](https://paultrampert.github.io/PTrampert.QueryObjects/)
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
