@@ -15,7 +15,7 @@ public static class ExpressionExtensions
     /// <param name="left">The base "this" lambda</param>
     /// <param name="right">The other lambda to be logically AND'ed with left.</param>
     /// <typeparam name="T">The parameter type.</typeparam>
-    /// <returns>(T) => left.Body && right.Body</returns>
+    /// <returns>(T) => left.Body &amp;&amp; right.Body</returns>
     public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> left, Expression<Func<T, bool>> right)
     {
         var parameter = left.Parameters[0];
