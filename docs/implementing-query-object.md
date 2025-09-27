@@ -26,7 +26,7 @@ public class UserQuery : IQueryObject<User>
 
     public Expression<Func<User, bool>> BuildQueryExpression()
     {
-        // Build your expression here
+        return u => u.Id == Id || u.Name == Name;
     }
 }
 ```
@@ -40,22 +40,28 @@ The library provides `ExpressionExtensions` to help you build complex expression
 For example:
 
 ```csharp
-using PTrampert.QueryObjects.ExpressionExtensions;
+using PTrampert.QueryObjects;
 
-public Expression<Func<User, bool>> BuildQueryExpression()
+public class UserQuery : IQueryObject<User>
 {
-    Expression<Func<User, bool>> expr = u => true;
+    public int? Id { get; set; }
+    public string Name { get; set; }
 
-    if (Id.HasValue)
-        expr = expr.AndAlso(u => u.Id == Id.Value);
+    public Expression<Func<User, bool>> BuildQueryExpression()
+    {
+        Expression<Func<User, bool>> expr = u => true;
 
-    if (!string.IsNullOrEmpty(Name))
-        expr = expr.AndAlso(u => u.Name.Contains(Name));
+        if (Id.HasValue)
+            expr = expr.AndAlso(u => u.Id == Id.Value);
 
-    // Example of using OrElse:
-    // expr = expr.OrElse(u => u.IsActive);
+        if (!string.IsNullOrEmpty(Name))
+            expr = expr.AndAlso(u => u.Name.Contains(Name));
 
-    return expr;
+        // Example of using OrElse:
+        // expr = expr.OrElse(u => u.IsActive);
+
+        return expr;
+    }
 }
 ```
 
