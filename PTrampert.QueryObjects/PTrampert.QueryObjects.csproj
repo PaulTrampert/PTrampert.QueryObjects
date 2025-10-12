@@ -14,6 +14,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/ptrampert/PTrampert.QueryObjects</PackageProjectUrl>
         <Copyright>Copyright © 2025 Paul Trampert</Copyright>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IncludeSymbols>true</IncludeSymbols>
         <IncludeSource>true</IncludeSource>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
