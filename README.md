@@ -1,5 +1,7 @@
 # PTrampert.QueryObjects
 
+[![NuGet Version](https://img.shields.io/nuget/v/PTrampert.QueryObjects.svg?style=flat-square)](https://www.nuget.org/packages/PTrampert.QueryObjects)
+
 Attribute-based query objects for LINQ/IQueryable in .NET
 
 ## Overview
