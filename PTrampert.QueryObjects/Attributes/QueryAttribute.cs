@@ -15,6 +15,13 @@ namespace PTrampert.QueryObjects.Attributes
         /// </summary>
         public string TargetProperty { get; private set; }
 
+        /// <summary>
+        /// Initialize the QueryAttribute, optionally overriding the target property name.
+        /// </summary>
+        /// <param name="targetProperty">
+        /// The name of the property on the data model that this query property should be applied to. If not provided,
+        /// the name of the query property will be used.
+        /// </param>
         protected QueryAttribute(string targetProperty = null)
         {
             TargetProperty = targetProperty;

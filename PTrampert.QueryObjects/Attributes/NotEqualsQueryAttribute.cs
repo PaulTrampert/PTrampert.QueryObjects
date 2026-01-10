@@ -10,6 +10,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class NotEqualsQueryAttribute : SimpleComparisonQueryAttribute
     {
+        /// <inheritdoc />
         public NotEqualsQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

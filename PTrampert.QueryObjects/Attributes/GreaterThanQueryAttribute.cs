@@ -10,6 +10,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class GreaterThanQueryAttribute : SimpleComparisonQueryAttribute
     {
+        /// <inheritdoc />
         public GreaterThanQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

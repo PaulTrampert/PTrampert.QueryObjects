@@ -6,6 +6,9 @@ using PTrampert.QueryObjects.Internals;
 
 namespace PTrampert.QueryObjects
 {
+    /// <summary>
+    /// Extension methods for <see cref="IQueryable{T}"/> and <see cref="IEnumerable{T}"/> to filter based on query objects.
+    /// </summary>
     public static class QueryableExtensions
     {
         private static readonly ConcurrentDictionary<Type, IQueryExpressionBuilder> ExpressionBuilders = new();

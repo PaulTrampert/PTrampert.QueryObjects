@@ -12,6 +12,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class NoneOfQueryAttribute : AnyOfQueryAttribute
     {
+        /// <inheritdoc />
         public NoneOfQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

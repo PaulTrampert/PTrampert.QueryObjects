@@ -15,13 +15,18 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class ContainsQueryAttribute : QueryAttribute
     {
+        /// <summary>
+        /// If the query property is null, ignore this filter. Defaults to true.
+        /// </summary>
         public bool IgnoreIfNull { get; set; } = true;
 
+        /// <inheritdoc />
         public ContainsQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {
         }
         
+        /// <inheritdoc />
         public override Expression BuildExpression(object queryObject, PropertyInfo queryProperty, ParameterExpression targetParameter,
             PropertyInfo targetProperty)
         {

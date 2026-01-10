@@ -11,6 +11,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class StringContainsQueryAttribute : QueryAttribute
     {
+        /// <inheritdoc />
         public StringContainsQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

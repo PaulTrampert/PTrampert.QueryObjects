@@ -12,6 +12,7 @@ namespace PTrampert.QueryObjects.Attributes;
 public class StringStartsWithQueryAttribute : QueryAttribute
 {
 
+    /// <inheritdoc />
     public StringStartsWithQueryAttribute(string targetProperty = null) : base(targetProperty)
     {
     }
@@ -20,6 +21,8 @@ public class StringStartsWithQueryAttribute : QueryAttribute
     /// Ignore the search term if it is null.
     /// </summary>
     public bool IgnoreIfNull { get; set; } = true;
+    
+    /// <inheritdoc />
     public override Expression BuildExpression(
         object queryObject, 
         PropertyInfo queryProperty, 
