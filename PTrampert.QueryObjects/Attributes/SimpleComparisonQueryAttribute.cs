@@ -19,6 +19,7 @@ namespace PTrampert.QueryObjects.Attributes
         /// </summary>
         public bool IgnoreIfNull { get; set; }
 
+        /// <inheritdoc />
         protected SimpleComparisonQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

@@ -10,6 +10,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class EqualsQueryAttribute : SimpleComparisonQueryAttribute
     {
+        /// <inheritdoc />
         public EqualsQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

@@ -10,6 +10,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class LessThanOrEqualQueryAttribute : SimpleComparisonQueryAttribute
     {
+        /// <inheritdoc />
         public LessThanOrEqualQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {

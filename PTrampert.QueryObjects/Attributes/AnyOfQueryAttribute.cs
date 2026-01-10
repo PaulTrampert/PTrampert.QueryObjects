@@ -15,6 +15,7 @@ namespace PTrampert.QueryObjects.Attributes
     /// </summary>
     public class AnyOfQueryAttribute : QueryAttribute
     {
+        /// <inheritdoc />
         public AnyOfQueryAttribute(string targetProperty = null)
             : base(targetProperty)
         {
