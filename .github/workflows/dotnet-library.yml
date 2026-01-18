@@ -15,4 +15,4 @@ jobs:
     with:
       project_name: PTrampert.QueryObjects
     secrets:
-      nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+      nuget_api_key: ${{ secrets.NUGET_ORG_SECRET }}
