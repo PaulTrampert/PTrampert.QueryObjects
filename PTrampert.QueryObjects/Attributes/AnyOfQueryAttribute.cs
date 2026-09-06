@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using PTrampert.QueryObjects.Internals;
@@ -36,16 +37,19 @@ namespace PTrampert.QueryObjects.Attributes
                 && typeof(IEnumerable).IsAssignableFrom(targetElementType))
             {
                 targetElementType = targetElementType.GetCollectionElementType();
-                return BuildCollectionExpression(queryValue, targetParameter, targetProperty, targetElementType);
+                return BuildCollectionExpression(queryObject, queryProperty, queryValue, targetParameter, targetProperty, targetElementType);
             }
             var containsMethod = targetElementType.GetContainsMethod();
 
-            var constant = Expression.Constant(queryValue);
+            var value = BuildValueExpression(queryObject, queryProperty, queryValue,
+                typeof(IEnumerable<>).MakeGenericType(targetElementType));
             var propertyAccess = Expression.Property(targetParameter, targetProperty);
-            return Expression.Call(containsMethod, constant, propertyAccess);
+            return Expression.Call(containsMethod, value, propertyAccess);
         }
         
         private Expression BuildCollectionExpression(
+            object queryObject,
+            PropertyInfo queryProperty,
             IEnumerable queryValue, 
             ParameterExpression targetParameter,
             PropertyInfo targetProperty,
@@ -54,9 +58,10 @@ namespace PTrampert.QueryObjects.Attributes
         {
             var intersectMethod = targetElementType.GetIntersectMethod();
             var anyMethod = targetElementType.GetAnyMethod();
-            var constant = Expression.Constant(queryValue);
+            var value = BuildValueExpression(queryObject, queryProperty, queryValue,
+                typeof(IEnumerable<>).MakeGenericType(targetElementType));
             var propertyAccess = Expression.Property(targetParameter, targetProperty);
-            var intersectCall = Expression.Call(intersectMethod, propertyAccess, constant);
+            var intersectCall = Expression.Call(intersectMethod, propertyAccess, value);
             var anyCall = Expression.Call(anyMethod, intersectCall);
             return anyCall;
         }
