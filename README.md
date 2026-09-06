@@ -12,6 +12,8 @@ PTrampert.QueryObjects is a .NET library that enables you to define query object
 - Attribute-based query object filtering
 - Supports custom query logic via `IQueryObject<T>`
 - Works with any `IQueryable<T>` (e.g. Entity Framework, MongoDB) or `IEnumerable<T>`
+- Emits query values as parameterizable member accesses rather than inline constants, so ORM and database query
+  caches stay effective (opt out per property with `InlineValue = true`)
 
 ## Example Usage
 
