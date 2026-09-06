@@ -56,6 +56,23 @@ var filtered = people.Where(query).ToList();
 
 Full documentation can be found [here](https://paultrampert.github.io/PTrampert.QueryObjects/)
 
+## Verified Providers
+
+`PTrampert.QueryObjects.Integration.Test` runs one shared suite against real databases, so every query attribute is
+proven to translate and execute server side on:
+
+- Entity Framework Core backed by SQL Server
+- Entity Framework Core backed by PostgreSQL
+- The MongoDB C# driver's LINQ provider
+
+The suite uses [Testcontainers](https://dotnet.testcontainers.org/) to start the databases, so running it requires a
+working Docker daemon. `dotnet test` on the solution runs it alongside the unit tests; to run a single provider, filter
+by its category:
+
+```sh
+dotnet test --filter "TestCategory=PostgreSql"   # or SqlServer, or MongoDb
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
