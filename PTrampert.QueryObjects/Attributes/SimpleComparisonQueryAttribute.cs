@@ -38,8 +38,8 @@ namespace PTrampert.QueryObjects.Attributes
             var queryValue = queryProperty.GetValue(queryObject);
             if (IgnoreIfNull && queryValue == null)
                 return null;
-            var constant = Expression.Constant(queryValue, targetProperty.PropertyType);
-            return ComparisonExpressionBuilder(Expression.Property(targetParameter, targetProperty), constant);
+            var value = BuildValueExpression(queryObject, queryProperty, queryValue, targetProperty.PropertyType);
+            return ComparisonExpressionBuilder(Expression.Property(targetParameter, targetProperty), value);
         }
     }
 }

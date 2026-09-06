@@ -2,7 +2,7 @@ using PTrampert.QueryObjects.Attributes;
 
 namespace PTrampert.QueryObjects.Test;
 
-internal record TestQuery
+internal class TestQuery
 {
     [EqualsQuery]
     public int IntProperty { get; set; }

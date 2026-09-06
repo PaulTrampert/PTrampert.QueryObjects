@@ -16,8 +16,15 @@ public class QueryExpressionBuilderTests
         };
 
         var expression = new QueryExpressionBuilder<TestTarget>().BuildQueryExpression(query);
-        
-        Assert.That(expression.ToString(), Is.EqualTo("Param_0 => ((((Param_0.IntProperty == 1) AndAlso (Param_0.AnotherProp > 1)) AndAlso (Param_0.AnotherProp < 4)) AndAlso (Param_0.StringProperty != \"Derp\"))"));
+
+        // Query values are referenced as member accesses on the query object rather than inlined as
+        // constants, so that ORMs lift them into query parameters.
+        const string q = "value(PTrampert.QueryObjects.Test.TestQuery)";
+        Assert.That(expression.ToString(), Is.EqualTo(
+            $"Param_0 => ((((Param_0.IntProperty == {q}.IntProperty) "
+            + $"AndAlso (Param_0.AnotherProp > {q}.AnotherPropLowerLimit)) "
+            + $"AndAlso (Param_0.AnotherProp < {q}.AnotherPropUpperLimit)) "
+            + $"AndAlso (Param_0.StringProperty != {q}.StringProperty))"));
     }
     
     [Test]
@@ -29,7 +36,9 @@ public class QueryExpressionBuilderTests
         };
 
         var expression = new QueryExpressionBuilder<TestTarget>().BuildQueryExpression(query);
-        
-        Assert.That(expression.ToString(), Is.EqualTo("Param_0 => ((Param_0.IntProperty == 1) AndAlso Param_0.StringProperty.Contains(\"Derp\"))"));
+
+        const string q = "value(PTrampert.QueryObjects.Test.TestAdvancedQuery)";
+        Assert.That(expression.ToString(), Is.EqualTo(
+            $"Param_0 => ((Param_0.IntProperty == {q}.IntProperty) AndAlso Param_0.StringProperty.Contains(\"Derp\"))"));
     }
 }
