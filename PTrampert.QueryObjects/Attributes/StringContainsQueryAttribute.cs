@@ -34,9 +34,9 @@ namespace PTrampert.QueryObjects.Attributes
             var queryValue = queryProperty.GetValue(queryObject);
             if (queryValue == null)
                 return IgnoreIfNull ? null : Expression.Constant(false);
-            var constant = Expression.Constant(queryValue);
+            var value = BuildValueExpression(queryObject, queryProperty, queryValue, typeof(string));
             var containsMethod = typeof(string).GetMethod(nameof(string.Contains), [typeof(string)])!;
-            return Expression.Call(Expression.Property(targetParameter, targetProperty), containsMethod, constant);
+            return Expression.Call(Expression.Property(targetParameter, targetProperty), containsMethod, value);
         }
     }
 }

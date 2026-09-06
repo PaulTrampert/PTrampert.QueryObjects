@@ -44,9 +44,9 @@ namespace PTrampert.QueryObjects.Attributes
             }
 
             var elementType = targetProperty.PropertyType.GetCollectionElementType();
-            var constant = Expression.Constant(queryValue);
+            var value = BuildValueExpression(queryObject, queryProperty, queryValue, elementType);
             var containsMethod = elementType.GetContainsMethod();
-            return Expression.Call(containsMethod, Expression.Property(targetParameter, targetProperty), constant);
+            return Expression.Call(containsMethod, Expression.Property(targetParameter, targetProperty), value);
         }
     }
 }
