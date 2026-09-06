@@ -3,7 +3,7 @@ using PTrampert.QueryObjects.Attributes;
 
 namespace PTrampert.QueryObjects.Test;
 
-internal class TestAdvancedQuery : IQueryObject<TestTarget>
+internal record TestAdvancedQuery : IQueryObject<TestTarget>
 {
     [EqualsQuery]
     public int IntProperty { get; set; }

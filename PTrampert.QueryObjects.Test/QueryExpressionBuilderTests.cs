@@ -19,7 +19,7 @@ public class QueryExpressionBuilderTests
 
         // Query values are referenced as member accesses on the query object rather than inlined as
         // constants, so that ORMs lift them into query parameters.
-        const string q = "value(PTrampert.QueryObjects.Test.TestQuery)";
+        var q = query.ToString();
         Assert.That(expression.ToString(), Is.EqualTo(
             $"Param_0 => ((((Param_0.IntProperty == {q}.IntProperty) "
             + $"AndAlso (Param_0.AnotherProp > {q}.AnotherPropLowerLimit)) "
@@ -37,7 +37,7 @@ public class QueryExpressionBuilderTests
 
         var expression = new QueryExpressionBuilder<TestTarget>().BuildQueryExpression(query);
 
-        const string q = "value(PTrampert.QueryObjects.Test.TestAdvancedQuery)";
+        var q = query.ToString();
         Assert.That(expression.ToString(), Is.EqualTo(
             $"Param_0 => ((Param_0.IntProperty == {q}.IntProperty) AndAlso Param_0.StringProperty.Contains(\"Derp\"))"));
     }
